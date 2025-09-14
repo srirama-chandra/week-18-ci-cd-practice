@@ -12,3 +12,4 @@ export default async function Page() {
   }
 }
 console.log("hello");
+console.log("hi");
