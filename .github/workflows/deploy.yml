@@ -27,3 +27,16 @@ jobs:
           push: true
           tags: isriramachandra/web-app:latest
       
+      - name: Multiple commands
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          key: ${{ secrets.KEY }}
+          script: |
+            sudo docker stop web-app || true
+            sudo docker rm web-app || true
+            sudo docker image prune -f
+            sudo docker pull isriramachandra/web-app:latest
+            sudo docker run -d --name web-app -p 3000:3000 isriramachandra/web-app:latest
+      
